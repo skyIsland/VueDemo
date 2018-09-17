@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>demo</title>
+    <style>
+        .test{
+            color:red;
+        }
+        .hhh{
+            width:20px;
+            padding:20px;
+            font-weight: bold;
+            color:black;
+            background-color: blue;
+            text-align: center;
+            border-radius: 1px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div id="app">
+        <p v-bind:class="{ test:isActive}">hhh</p>
+        <p v-bind:class="classObject">hhh</p>
+        <button-counter></button-counter>
+        <blog-post title="My journey with Vue"></blog-post>
+        <blog-post title="Blogging with Vue"></blog-post>
+        <blog-post title="Why Vue is so fun"></blog-post>
+        
+    </div>
+    <div id="example-1">
+        <button v-on:click="counter += 1">Add 1</button>
+        <p>The button above has been clicked {{ counter }} times.</p>
+
+    </div>
+    <div id='example-3'>
+        <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+        <label for="jack">Jack</label>
+        <input type="checkbox" id="john" value="John" v-model="checkedNames">
+        <label for="john">John</label>
+        <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+        <label for="mike">Mike</label>
+        <br>
+        <span>Checked names: {{ checkedNames }}</span>
+    </div> -->
+    <div id="prop-demo">
+        <div :style="{fontSize: postFontSize + 'em'}">
+                <blog-post
+                    v-for="post in posts"
+                    v-bind:key="post.id"
+                    v-bind:post="post"
+                    v-on:enlarge-text="postFontSize += $event"
+                    ></blog-post>
+            </div>
+    </div>
+    <!-- <button type="button" onclick="test(this)">hh</button> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // 定义一个名为 button-counter 的新组件
+        Vue.component('button-counter', {
+            data: function () {
+                return {
+                    count: 0
+                }
+            },
+            template: '<button v-on:click="count++">你点击了 {{ count }} 次.</button>'
+        });
+        Vue.component('blog-post', {
+            props: ['post'],
+            template: `
+                <div class="blog-post">
+                <h3>{{ post.title }}</h3>
+                <button v-on:click="$emit('enlarge-text',0.2)">
+                    Enlarge text
+                </button>
+                <div v-html="post.content"></div>
+                </div>`
+        })
+        var propDemo = new Vue({
+            el:'#prop-demo',
+            data:{
+                posts: [
+                    { id: 1, title: 'My journey with Vue' },
+                    { id: 2, title: 'Blogging with Vue' },
+                    { id: 3, title: 'Why Vue is so fun' }
+                ],
+                postFontSize: 1
+            }
+        });
+        // var vue = new Vue({
+        //     el: '#app',
+        //     data: {
+        //         isActive: false,
+        //         classObject: {
+        //             test: true,
+        //             hhh: false
+        //         },
+                
+        //     }
+        // });
+        // var example1 = new Vue({
+        //     el: '#example-1',
+        //     data: {
+        //         counter: 0
+        //     }
+        // })
+        // var vue3 = new Vue({
+        //     el: '#example-3',
+        //     data: {
+        //         checkedNames: []
+        //     }
+        // })
+        // function test(event) {
+        //     console.log(event.target.tagName);
+        // }
+
+    </script>
+</body>
+
+</html>

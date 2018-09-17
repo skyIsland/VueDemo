@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Component</title>
+</head>
+<body>
+    <div id="app">
+        <hi></hi>
+    </div>
+    <div id="app1">
+            <hi></hi>
+        </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('hi',{
+            template:`
+            <h2>
+                 {{ name }}：大家好，这是我的女朋友@关晓彤
+                 <button v-on:click="changeName">改名</button>
+            </h2>`,
+            data:function(){
+                return {
+                    name:'鹿晗'
+                }
+            },
+            methods:{
+                changeName:function(){
+                    this.name = '黄渤';
+                }
+            }
+        });
+        var vue = new Vue({
+            el:'#app'
+        });
+        var vue1 = new Vue({
+            el:'#app1'
+        });
+    </script>
+</body>
+</html>

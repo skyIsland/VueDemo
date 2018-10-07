@@ -22,19 +22,46 @@
 <script>
 	export default {
 		data: {
-			
+
 		},
 		methods: {
 			login(e) {
-				console.log("得到账号:"+ e.detail.value.nameValue + ';得到密码:' + e.detail.value.passwordValue)
+				console.log("得到账号:" + e.detail.value.nameValue + ';得到密码:' + e.detail.value.passwordValue)
+				uni.request({
+					url: 'http://139.199.207.128:4399/Api/Account/Login',
+					data: {
+						loginName: e.detail.value.nameValue,
+						pwd: e.detail.value.passwordValue
+					},
+					success: (ret) => {
+						if (ret.Result) {
+							uni.setStorage({
+								key: 'IsSigned',
+								data: 'true'
+							});
+							uni.setStorage({
+								key: 'UserName',
+								data: e.detail.value.nameValue
+							});
+						} else {
+							uni.showToast({
+								title: ret.Message,
+								duration: 2000
+							});
+						}
+					}
+				});
 			},
 			register() {
-				console.log("前往注册页面")
+				uni.showToast({
+					title: '攻城狮正在开发中...',
+					duration: 2000
+				});
 			}
 		}
 	}
 </script>
 
 <style>
-	
+
 </style>

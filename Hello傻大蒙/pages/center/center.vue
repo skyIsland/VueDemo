@@ -59,6 +59,7 @@
 		created:function(){
 			try {
 				const value = uni.getStorageSync('IsSigned');
+				console.log(value);
 				if (value) {
 					this.userInfo.avatarUrl = '../../static/logo.png';
 					this.userInfo.name = uni.getStorageSync('UserName');
